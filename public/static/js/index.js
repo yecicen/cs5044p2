@@ -4,6 +4,7 @@ function draw() {
     const svgWidth = 500;
     const svgHeight = 500;
     console.log('anlihu');
+    console.log('anlihu_2.0 test');
     let svg = d3.select("svg");
     let width = svg
         .attr("width", svgWidth)
