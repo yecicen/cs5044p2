@@ -1,32 +1,222 @@
 // import {Swatches} from "@d3/color-legend"
 import * as d3 from "https://cdn.skypack.dev/d3@7";
 
+// data = [8, 18, 7, 10, 19, 20, 10, 10, 6, 19, 17, 18, 23, 23, 13, 12, 15, 6, 9, 8];
 // links = d3.csvParse(await FileAttachment("suits.csv").text())
-const veri = [{ source: "Microsoft", target: "Amazon", type: "licensing" },
-{ source: "Microsoft", target: "HTC", type: "licensing" },
-{ source: "Samsung", target: "Apple", type: "suit" },
-{ source: "Motorola", target: "Apple", type: "suit" },
-{ source: "Nokia", target: "Apple", type: "resolved" },
-{ source: "HTC", target: "Apple", type: "suit" },
-{ source: "Kodak", target: "Apple", type: "suit" },
-{ source: "Microsoft", target: "Barnes & Noble", type: "suit" },
-{ source: "Microsoft", target: "Foxconn", type: "suit" },
-{ source: "Oracle", target: "Google", type: "suit" },
-{ source: "Apple", target: "HTC", type: "suit" },
-{ source: "Microsoft", target: "Inventec", type: "suit" },
-{ source: "Samsung", target: "Kodak", type: "resolved" },
-{ source: "LG", target: "Kodak", type: "resolved" },
-{ source: "RIM", target: "Kodak", type: "suit" },
-{ source: "Sony", target: "LG", type: "suit" },
-{ source: "Kodak", target: "LG", type: "resolved" },
-{ source: "Apple", target: "Nokia", type: "resolved" },
-{ source: "Qualcomm", target: "Nokia", type: "resolved" },
-{ source: "Apple", target: "Motorola", type: "suit" }];
-const types = Array.from(new Set(veri.map(d => d.type)))
-let height = 600
+const data = {
+    "nodes": [
+        {
+            "id": "Microsoft"
+        },
+        {
+            "id": "Amazon"
+        },
+        {
+            "id": "HTC"
+        },
+        {
+            "id": "Samsung"
+        },
+        {
+            "id": "Apple"
+        },
+        {
+            "id": "Motorola"
+        },
+        {
+            "id": "Nokia"
+        },
+        {
+            "id": "Kodak"
+        },
+        {
+            "id": "Barnes & Noble"
+        },
+        {
+            "id": "Foxconn"
+        },
+        {
+            "id": "Oracle"
+        },
+        {
+            "id": "Google"
+        },
+        {
+            "id": "Inventec"
+        },
+        {
+            "id": "LG"
+        },
+        {
+            "id": "RIM"
+        },
+        {
+            "id": "Sony"
+        },
+        {
+            "id": "Qualcomm"
+        },
+        {
+            "id": "Huawei"
+        },
+        {
+            "id": "ZTE"
+        },
+        {
+            "id": "Ericsson"
+        }
+    ],
+    "links": [
+        {
+            "source": "Microsoft",
+            "target": "Amazon",
+            "type": "licensing"
+        },
+        {
+            "source": "Microsoft",
+            "target": "HTC",
+            "type": "licensing"
+        },
+        {
+            "source": "Samsung",
+            "target": "Apple",
+            "type": "suit"
+        },
+        {
+            "source": "Motorola",
+            "target": "Apple",
+            "type": "suit"
+        },
+        {
+            "source": "Nokia",
+            "target": "Apple",
+            "type": "resolved"
+        },
+        {
+            "source": "HTC",
+            "target": "Apple",
+            "type": "suit"
+        },
+        {
+            "source": "Kodak",
+            "target": "Apple",
+            "type": "suit"
+        },
+        {
+            "source": "Microsoft",
+            "target": "Barnes & Noble",
+            "type": "suit"
+        },
+        {
+            "source": "Microsoft",
+            "target": "Foxconn",
+            "type": "suit"
+        },
+        {
+            "source": "Oracle",
+            "target": "Google",
+            "type": "suit"
+        },
+        {
+            "source": "Apple",
+            "target": "HTC",
+            "type": "suit"
+        },
+        {
+            "source": "Microsoft",
+            "target": "Inventec",
+            "type": "suit"
+        },
+        {
+            "source": "Samsung",
+            "target": "Kodak",
+            "type": "resolved"
+        },
+        {
+            "source": "LG",
+            "target": "Kodak",
+            "type": "resolved"
+        },
+        {
+            "source": "RIM",
+            "target": "Kodak",
+            "type": "suit"
+        },
+        {
+            "source": "Sony",
+            "target": "LG",
+            "type": "suit"
+        },
+        {
+            "source": "Kodak",
+            "target": "LG",
+            "type": "resolved"
+        },
+        {
+            "source": "Apple",
+            "target": "Nokia",
+            "type": "resolved"
+        },
+        {
+            "source": "Qualcomm",
+            "target": "Nokia",
+            "type": "resolved"
+        },
+        {
+            "source": "Apple",
+            "target": "Motorola",
+            "type": "suit"
+        },
+        {
+            "source": "Microsoft",
+            "target": "Motorola",
+            "type": "suit"
+        },
+        {
+            "source": "Motorola",
+            "target": "Microsoft",
+            "type": "suit"
+        },
+        {
+            "source": "Huawei",
+            "target": "ZTE",
+            "type": "suit"
+        },
+        {
+            "source": "Ericsson",
+            "target": "ZTE",
+            "type": "suit"
+        },
+        {
+            "source": "Kodak",
+            "target": "Samsung",
+            "type": "resolved"
+        },
+        {
+            "source": "Apple",
+            "target": "Samsung",
+            "type": "suit"
+        },
+        {
+            "source": "Kodak",
+            "target": "RIM",
+            "type": "suit"
+        },
+        {
+            "source": "Nokia",
+            "target": "Qualcomm",
+            "type": "suit"
+        }
+    ]
+}
 
-setTimeout(() =>{ chart ()},100)
-const chart = () => {
+
+function draw() {
+    const types = Array.from(new Set(data.links.map(d => d.type)))
+    let height = 600;
+    let width = 600;
+    let color = d3.scaleOrdinal(types, d3.schemeCategory10)
+
     const links = data.links.map(d => Object.create(d));
     const nodes = data.nodes.map(d => Object.create(d));
 
@@ -36,7 +226,11 @@ const chart = () => {
         .force("x", d3.forceX())
         .force("y", d3.forceY());
 
-    const svg = d3.create("svg")
+    const svg = d3
+        .select('#container')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
         .attr("viewBox", [-width / 2, -height / 2, width, height])
         .style("font", "12px sans-serif");
 
@@ -92,12 +286,10 @@ const chart = () => {
         node.attr("transform", d => `translate(${d.x},${d.y})`);
     });
 
-    invalidation.then(() => simulation.stop());
+    // invalidation.then(() => simulation.stop());
 
     return svg.node();
 }
-
-let data = chart();
 
 function linkArc(d) {
     const r = Math.hypot(d.target.x - d.source.x, d.target.y - d.source.y);
@@ -107,7 +299,7 @@ function linkArc(d) {
     `;
 }
 
-const drag = simulation => {
+let drag = simulation => {
 
     function dragstarted(event, d) {
         if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -131,3 +323,5 @@ const drag = simulation => {
         .on("drag", dragged)
         .on("end", dragended);
 }
+
+draw();
