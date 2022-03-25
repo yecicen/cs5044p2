@@ -2,7 +2,8 @@ const express = require('express');
 var path = require('path');
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname, "../public"));
 const port = 3000;
 // rendering html file.
 app.get('/', (req, res) => {

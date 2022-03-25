@@ -19,6 +19,8 @@
   "homepage": "https://github.com/yecicen/cs5044p2#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "topojson": "^3.0.2",
+    "topojson-client": "^3.1.0"
   }
 }
