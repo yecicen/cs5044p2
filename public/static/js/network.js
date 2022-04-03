@@ -210,15 +210,59 @@ const data = {
     ]
 }
 
+function alterData(data) {
+
+    
+}
 
 function draw() {
     const types = Array.from(new Set(data.links.map(d => d.type)))
     let height = 600;
     let width = 600;
     let color = d3.scaleOrdinal(types, d3.schemeCategory10)
+    d3.csv('./data/Unicorn_Companies.csv').then(unicorn_data => {
+        let cities = unicorn_data.map(d => d.Country);
+        cities = [...new Set(cities)]
 
-    const links = data.links.map(d => Object.create(d));
-    const nodes = data.nodes.map(d => Object.create(d));
+        let nodes = cities.map(elem => (
+            {
+              id: elem
+            } 
+          ));
+        let investors = unicorn_data.map(x => x['SelectInverstors']);
+        investors = investors.map(d => d.split(','));
+        investors = [].concat(...investors);
+        investors = investors.map(d => d.trim());
+
+        investors  = [...new Set(investors)]
+        let connectedCities = [];
+        for(const investor of investors){
+            let tempData = unicorn_data.filter(c =>  c.SelectInverstors.includes(investor))
+            let tempCities = tempData.map(c => c['Country'])
+            tempCities  = [...new Set(tempCities)]
+            if(tempCities.length > 1){
+                for (let i = 0; i < tempCities.length - 1; i++) {
+
+                    var linkObject = {
+                        "source":tempCities[i],
+                        "target":tempCities[i+1],
+                        "type":investor
+                    }
+                    console.log(linkObject);
+                    connectedCities.push(linkObject)
+                }
+            }
+
+        }
+        // connectedCities = connectedCities.map(c => c.City);
+        // console.log(connectedCities);
+        for(let i = 0; i < cities.length; i++) {}
+
+        // connectedCities = connectedCities.filter(x => x.type == "IQ Capital")
+        // const links = data.links.map(d => Object.create(d));
+        const links = connectedCities.map(d => Object.create(d));
+        // console.log(links);
+        nodes = nodes.map(d => Object.create(d));
 
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id))
@@ -289,6 +333,8 @@ function draw() {
     // invalidation.then(() => simulation.stop());
 
     return svg.node();
+    });
+
 }
 
 function linkArc(d) {
