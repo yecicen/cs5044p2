@@ -9,6 +9,7 @@ const height = 600;
 
 function draw() {
 
+    //this part of the code is altered from https://www.youtube.com/watch?v=urfyp-r255A
     const svg = d3.select('#container').append('svg')
     .attr('width', width)
     .attr('height', height)
@@ -139,15 +140,11 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
             "#C67194",
         ]
         let color = d3.scaleOrdinal(colorObject, colorIndustry)
-            // connectedCountries = connectedCountries.map(c => c.City);
-            // console.log(connectedCountries);
-    
-            // connectedCountries = connectedCountries.filter(x => x.type == "IQ Capital")
-            // const links = data.links.map(d => Object.create(d));
+
             const links = connectedCountries.map(d => Object.create(d));
-            // console.log(links);
+
             nodes = nodes.map(d => Object.create(d));
-    
+            // code is altered from https://observablehq.com/@d3/mobile-patent-suits
             const simulation = d3.forceSimulation(nodes)
                 .force("link", d3.forceLink(links).id(d => d.id))
                 .force("charge", d3.forceManyBody().strength(-400))
@@ -157,8 +154,8 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
             const svg = d3
                 .select('#container')
                 .append('svg')
-                .attr('width', width/2)
-                .attr('height', height/2)
+                .attr('width', width*0.8)
+                .attr('height', height*0.8)
                 .attr('id', "network_svg")
                 .style('position', 'absolute')
                 // .style('top',height/2)

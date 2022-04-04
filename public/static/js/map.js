@@ -2,7 +2,7 @@ import * as d3 from "https://cdn.skypack.dev/d3@7";
 import * as topojson from 'https://cdn.skypack.dev/topojson-client';
 const width = 900;
 const height = 600;
-
+// this part of the code is altered from https://www.youtube.com/watch?v=urfyp-r255A
 const svg = d3.select('#container').append('svg')
     .attr('height', height)
     .attr('width', width)
