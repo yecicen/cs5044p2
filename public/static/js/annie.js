@@ -20,7 +20,6 @@ let r_scale;
 let filteredData = null;
 
 let industryColor = {
-    // 
     "Artificial intelligence": "#5A88B8",
     "Cybersecurity": "#5A88B8",
     "Hardware": "#5A88B8",
@@ -209,7 +208,7 @@ function initalTable(data) {
         .style("float", "right")
         .style("overflow", "auto")
         .style("width", "300")
-        .style("height", "650");
+        .style("height", "600");
 
     let table = table_div.append("table")
         .attr("id", "table_a")
@@ -265,13 +264,14 @@ function handleClick(e, data) {
         { name: 'Location', property: 'City' },
         { name: 'Industry', property: 'Industry' },
         { name: 'Founded Year', property: 'FoundedYear' },
-        { name: 'Total Raised', property: 'TotalRaised' }
+        { name: 'Total Raised', property: 'TotalRaised' },
+        { name: 'Valuation', property: 'Valuation'}
     ]
 
     d3.selectAll('.tooltip_g')
         .remove()
 
-    let tooltip_g = d3.select("svg")
+    let tooltip_g = d3.select("#ranking_div").select("svg")
         .append("g")
         .attr("class", "tooltip_g")
 
@@ -309,7 +309,7 @@ function handleClick(e, data) {
         .attr("class", "company-details-text")
         .data(companyDetails)
         .join('text')
-        .text(d => d.name === "Total Raised"
+        .text(d => d.name === "Total Raised" || d.name === "Valuation"
             ? `${d.name}: $ ${data[d.property]} M`
             : `${d.name}: ${data[d.property]}`)
         .attr('x', (width - rect_outer_width + 15))
@@ -332,7 +332,7 @@ function handleClick(e, data) {
     tooltip_g.append('text')
         .text("=> Explore")
         .attr('x', (width - rect_outer_width / 2 + 40))
-        .attr('y', 125)
+        .attr('y', 135)
         .style('font-size', '20px')
         .style('font-weight', 'bold')
         .style('cursor', 'pointer')
