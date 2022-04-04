@@ -279,7 +279,7 @@ function initalTable(data) {
         .append("tbody")
         .attr("id", "table_content")
 
-    var rows = tbody.selectAll("tr")
+    let rows = tbody.selectAll("tr")
         .data(data)
         .enter()
         .append("tr")
@@ -290,7 +290,7 @@ function initalTable(data) {
             return handleClick(e, d)
         })
 
-    var cells = rows.selectAll("td")
+    let cells = rows.selectAll("td")
         .data(function (d) {
             return columnNames.map(function (column) {
                 return { column: column, value: d[column] }
