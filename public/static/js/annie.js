@@ -61,11 +61,13 @@ function initialRadio() {
 function showRank() {
     document.getElementById("ranking_div").style.display = "";
     document.getElementById("map_svg").style.display = "none";
+    document.getElementById("network_svg").style.display = "none";
 }
 
 function showMap() {
     document.getElementById("ranking_div").style.display = "none";
     document.getElementById("map_svg").style.display = "";
+    document.getElementById("network_svg").style.display = "";
 }
 
 function initialFilters(data) {
