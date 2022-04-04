@@ -39,7 +39,6 @@ let industryColor = {
     "Fintech": "#24B086",
     "Edtech": "#C3BD0C",
     "Other": "#C67194"
-
 };
 
 d3.csv(unicorns)
@@ -174,8 +173,6 @@ function initaliseRankingList(data) {
         .attr("fill", d => industryColor[d.Industry])
         .attr("opacity", 0.9)
         .style('cursor', 'pointer')
-        // .attr("stroke", "black")
-        // .attr("stroke-width", 1)
         .attr("stroke-linecap", 'round')
         .on("mouseover", (e, d) => {
 
@@ -183,6 +180,41 @@ function initaliseRankingList(data) {
         .on("click", (e, d) => {
             return handleClick(e, d)
         })
+    
+    showLegend();
+}
+
+function showLegend() {
+    let lengend_detail = [
+        { name: 'Technology', property: '#5A88B8' },
+        { name: 'Service', property: '#FFAB00' },
+        { name: 'Consumption', property: '#E96463' },
+        { name: 'Transportation', property: '#7CC4CC' },
+        { name: 'Fintech', property: '#24B086' },
+        { name: 'Edtech', property: '#C3BD0C'},
+        { name: 'Other', property: '#C67194'}
+    ]
+
+    let legend_g = d3.select("#ranking_div").select("svg")
+        .append("g")
+        .attr("class", "legend_g")
+
+    legend_g.selectAll("text")
+            .data(lengend_detail)
+            .enter()
+            .append("text")
+            .text(d => d.name)
+            .attr("x", 820)
+            .attr("y", (d, i) => i * 20 + 410)
+
+    legend_g.selectAll("circle")
+            .data(lengend_detail)
+            .enter()
+            .append("circle")
+            .attr("cx", 805)
+            .attr("cy", (d, i) => i * 20 + 405)
+            .attr("r", 5)
+            .attr("fill", d => d.property)
 }
 
 function setXAxis(x_axis) {
