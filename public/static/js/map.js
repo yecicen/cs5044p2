@@ -6,6 +6,7 @@ const height = 600;
 const svg = d3.select('#container').append('svg')
     .attr('height', height)
     .attr('width', width)
+    .attr("id", "map_svg")
     .style('background-color', 'lightblue')
 
     const projection = d3.geoMercator().scale(140)

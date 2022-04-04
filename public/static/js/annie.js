@@ -49,26 +49,10 @@ d3.csv(unicorns)
         initialFilters(unicorns);
         initaliseRankingList(unicorns);
         initalTable(unicorns);
-        testWorldMap();
     });
 
-function testWorldMap() {
-    let option = document.getElementById('map_r');
-    if (option.checked) {
-        let worldMap = d3.select("body")
-            .append("div")
-            .attr("id", "map_div")
-            .append("svg")
-            .attr("width", "900")
-            .attr("height", "600")
-            .style("background-color", "grey")
-    }
-
-}
 
 function initialRadio() {
-    // document.getElementById('map_r').checked = false;
-    // document.getElementById('ranking_div').checked = true;
     let showRankinglist = d3.select("#rank_r")
         .on("click", showRank)
     let showWorldMap = d3.select("#map_r")
@@ -76,17 +60,13 @@ function initialRadio() {
 }
 
 function showRank() {
-    // document.getElementById("ranking_div").checked = true;
-    // document.getElementById("map_div").checked = false;
     document.getElementById("ranking_div").style.display = "";
-    document.getElementById("map_div").style.display = "none";
+    document.getElementById("map_svg").style.display = "none";
 }
 
 function showMap() {
-    // document.getElementById("map_div").checked = true;
-    // document.getElementById("ranking_div").checked = false;
     document.getElementById("ranking_div").style.display = "none";
-    document.getElementById("map_div").style.display = "";
+    document.getElementById("map_svg").style.display = "";
 }
 
 function initialFilters(data) {
