@@ -110,6 +110,10 @@ function initialFilters(data) {
 }
 
 function initaliseRankingList(data) {
+    // code reference:
+    // Bankova, D. (2020). Fortune 1000 (US) Companies 2020.
+    // https://observablehq.com/@deaxmachina/fortune-1000-us-companies-2020
+
     let ranking_SVG = d3.select("body")
         .append("div")
         .attr("id", "ranking_div")
