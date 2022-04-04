@@ -139,6 +139,13 @@ function initaliseRankingList(data) {
             .ticks(8)
             .tickFormat(i => `$${d3.format(",.0f")(i)}M`)
         );
+    
+    ranking_SVG.append("text")
+        .text("Total Raised")
+        .attr("x", 20)
+        .attr("y", 540)
+        .attr("fill", circleBaseColour)
+        .style('font-weight', 'bold')
 
     let x_axis = ranking_SVG.select(".x-axis");
     setXAxis(x_axis);
@@ -206,6 +213,8 @@ function showLegend() {
             .text(d => d.name)
             .attr("x", 820)
             .attr("y", (d, i) => i * 20 + 410)
+            .attr("fill", circleBaseColour)
+            .style('font-weight', 'bold')
 
     legend_g.selectAll("circle")
             .data(lengend_detail)
@@ -313,6 +322,7 @@ function handleClick(e, data) {
         .attr("class", "rectO tooltip")
         .attr("width", rect_outer_width)
         .attr("height", rect_outer_height)
+        .attr("fill", circleBaseColour)
         .attr("rx", "10")
         .attr("ry", "10")
         .attr("x", width - rect_outer_width)
@@ -334,7 +344,7 @@ function handleClick(e, data) {
         .attr("class", "bound tooltip")
         .attr("width", rect_outer_width - 20)
         .attr("height", 3)
-        .attr("fill", "#black")
+        .attr("fill", circleBaseColour)
         .attr("x", width - rect_outer_width + 10)
         .attr("y", 40)
         .style("z-index", "2")
@@ -367,6 +377,7 @@ function handleClick(e, data) {
         .text("=> Explore")
         .attr('x', (width - rect_outer_width / 2 + 40))
         .attr('y', 135)
+        .attr("fill", circleBaseColour)
         .style('font-size', '20px')
         .style('font-weight', 'bold')
         .style('cursor', 'pointer')
