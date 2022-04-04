@@ -67,22 +67,26 @@
         let filteredData = null;
 
         let industryColor = {
-            "Artificial intelligence": "#efe495",
-            "Auto & transportation": "#b0d6a1",
-            "Consumer & retail": "#67c5af",
-            "Cybersecurity": "#00adc3",
-            "Data management & analytics": "#f0b397",
-            "E-commerce & direct-to-consumer": "#b1a8a3",
-            "Edtech": "#679ab1",
-            "Fintech": "#0088c5",
-            "Hardware": "#f17b98",
-            "Health": "#b273a5",
-            "Internet software & services": "#686ab3",
-            "Mobile & telecommunications": "#005dc7",
-            "Other": "#f4089b",
-            "Supply chain, logistics, & delivery": "#b407a8",
-            "Travel": "#6907b6"
-            // "#0006cb"
+            // 
+            "Artificial intelligence": "#5A88B8",
+            "Cybersecurity": "#5A88B8",
+            "Hardware": "#5A88B8",
+
+            "Internet software & services": "#FFAB00",
+            "Mobile & telecommunications": "#FFAB00",
+            "Health": "#FFAB00",
+            "Data management & analytics": "#FFAB00",
+
+            "Consumer & retail": "#E96463",
+            "E-commerce & direct-to-consumer": "#E96463",
+            "Travel": "#E96463",
+
+            "Supply chain, logistics, & delivery": "#7CC4CC",
+            "Auto & transportation": "#7CC4CC",
+
+            "Fintech": "#24B086",
+            "Edtech": "#C3BD0C",
+            "Other": "#C67194"
         };
 
         d3.csv(unicorns)
@@ -223,10 +227,14 @@
                 .attr("cy", d => d.y)
                 .attr("r", d => r_scale(d['Valuation']))
                 .attr("fill", d => industryColor[d.Industry])
+                .attr("opacity", 0.9)
                 .style('cursor', 'pointer')
                 // .attr("stroke", "black")
                 // .attr("stroke-width", 1)
                 .attr("stroke-linecap", 'round')
+                .on("mouseover", (e, d) => {
+                    
+                })
                 .on("click", (e, d) => {
                     return handleClick(e, d)
                 })
@@ -412,7 +420,8 @@
                     update => update
                         .call(update => update.transition()
                             .duration(500)
-                            .attr("fill", d => filteredData.includes(d) ? industryColor[d.Industry] : "grey")
+                            .attr("fill", d => filteredData.includes(d) ? industryColor[d.Industry] : "#EEEEEE")
+                            .attr("opacity", 0.9)
                             .attr("cx", d => d.x)
                             .attr("cy", d => d.y)),
                     exit => exit
