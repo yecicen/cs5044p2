@@ -51,6 +51,9 @@ d3.csv(unicorns)
 
 
 function initialRadio() {
+    setTimeout(() => {
+        document.getElementById("map_r").click();
+    }, 100);
     let showRankinglist = d3.select("#rank_r")
         .on("click", showRank)
     let showWorldMap = d3.select("#map_r")
