@@ -216,13 +216,14 @@ function showLegend() {
             .attr("fill", circleBaseColour)
             .style('font-weight', 'bold')
 
-    legend_g.selectAll("circle")
+    legend_g.selectAll("rect")
             .data(lengend_detail)
             .enter()
-            .append("circle")
-            .attr("cx", 805)
-            .attr("cy", (d, i) => i * 20 + 405)
-            .attr("r", 5)
+            .append("rect")
+            .attr("x", 805)
+            .attr("y", (d, i) => i * 20 + 400)
+            .attr("width", 10)
+            .attr("height", 10)
             .attr("fill", d => d.property)
 }
 
@@ -397,7 +398,7 @@ function updateData(data) {
 
     console.log(filteredData)
 
-    let selectedCircle = d3.selectAll("circle")
+    let selectedCircle = d3.selectAll(".company-circle")
         .data(data)
         .join(
             enter => enter
@@ -445,7 +446,6 @@ function updateData(data) {
                 .append("td")
                 .attr("class", "data_cell")
                 .attr("align", "center")
-                // .style("background-color", (d,i) => i % 2 === 0? "white": "grey")
                 .text(d => d.value),
             update => update
                 .call(update => update.transition()
