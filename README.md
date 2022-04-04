@@ -10,7 +10,10 @@ Access to directory
 ```
 cd cs5044p2
 ```
-
+Install the libraries
+```
+npm install
+```
 Run the following command to start the server
 ```
 npm start
